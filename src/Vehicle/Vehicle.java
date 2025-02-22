@@ -2,67 +2,84 @@ package Vehicle;
 
 abstract class Vehicle {
 
-    //instance variables
-    private String plateNumber;
-    private String make;
-    private String model;
-    private int yearOfProduction;
+	//instance variables
+	protected String plateNumber;
+	protected String make;
+	protected String model;
+	protected int yearOfProduction;
 
-    //methods:
-    //default constructor is automatically defined, no need to redefine it
-    //parametrized constructor
+	//methods:
+	//default constructor
+	public Vehicle(){
+		this.plateNumber = null;
+		this.make = null;
+		this.model = null;
+		this.yearOfProduction = 0;
+	}
 
-    public Vehicle(String make, String model, int yearOfProduction) {
-        this.make = make;
-        this.model = model;
-        this.yearOfProduction = yearOfProduction;
-        //plate number will be automatically added within the child constructors
-    }
+	//parametrized constructor
 
-    //copy constructor
+	public Vehicle(String make, String model, int yearOfProduction) {
+		this.make = make;
+		this.model = model;
+		this.yearOfProduction = yearOfProduction;
+		this.plateNumber = generatePlateNumber();
+	}
 
-    public Vehicle(Vehicle vehicle){
-        this.make = vehicle.make;
-        this.model = vehicle.model;
-        this.yearOfProduction = vehicle.yearOfProduction;
-        //plate number will be assigned automatically
+	//copy constructor
 
-    }
+	public Vehicle(Vehicle vehicle){
+		this.make = vehicle.make;
+		this.model = vehicle.model;
+		this.yearOfProduction = vehicle.yearOfProduction;
+		this.plateNumber = generatePlateNumber();
+	}
 
-    //getter methods
+	//generate plate number method, method will not set the plate number, but will only return one
 
-    public String getPlateNumber(){
-        return this.plateNumber;
-    }
+	protected abstract String generatePlateNumber();
 
-    public String getMake() {
-        return make;
-    }
+	//getter methods
 
-    public String getModel() {
-        return model;
-    }
+	public String getPlateNumber(){
+		return this.plateNumber;
+	}
 
-    public int getYearOfProduction() {
-        return yearOfProduction;
-    }
+	public String getMake() {
+		return make;
+	}
 
-    //setter methods
+	public String getModel() {
+		return model;
+	}
+
+	public int getYearOfProduction() {
+		return yearOfProduction;
+	}
+
+	//setter methods
 
 
-    public void setPlateNumber(String plateNumber) {
-        this.plateNumber = plateNumber;
-    }
+	public void setPlateNumber(String plateNumber) {
+		this.plateNumber = plateNumber;
+	}
 
-    public void setMake(String make) {
-        this.make = make;
-    }
+	public void setMake(String make) {
+		this.make = make;
+	}
 
-    public void setModel(String model) {
-        this.model = model;
-    }
+	public void setModel(String model) {
+		this.model = model;
+	}
 
-    public void setYearOfProduction(int yearOfProduction) {
-        this.yearOfProduction = yearOfProduction;
-    }
+	public void setYearOfProduction(int yearOfProduction) {
+		this.yearOfProduction = yearOfProduction;
+	}
+
+	//equals method
+	@Override
+	public abstract boolean equals(Object obj);
+
+	@Override
+	public abstract String toString();
 }
